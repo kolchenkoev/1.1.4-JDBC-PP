@@ -13,8 +13,9 @@ public class Util {
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         try {
+            Class.forName(DRIVER);
             conn = DriverManager.getConnection(URL, USER, PASSWORD); //DriverManager: Класс в JDBC API, который управляет набором драйверов JDBC
-        } catch (SQLException e) {       //возникает, если произошла ошибка во время установления соединения с базой данных (например, неверный URL, имя пользователя или пароль
+        } catch (SQLException | ClassNotFoundException e) {       //возникает, если произошла ошибка во время установления соединения с базой данных (например, неверный URL, имя пользователя или пароль
             throw new RuntimeException();
         }
         return conn;
