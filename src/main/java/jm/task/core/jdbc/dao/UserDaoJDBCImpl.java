@@ -26,7 +26,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 // stmnt.execute() возвращает true, если первым результатом является ResultSet, иначе false.
             }
             conn.commit(); // подтверждаем транзакцию
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             if (conn != null) {
                 try {
                     conn.rollback(); // откат транзакции
@@ -57,7 +57,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 stmnt.execute("DROP TABLE IF EXISTS users");
             }
             conn.commit();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             if (conn != null) {
                 try {
                     conn.rollback();
@@ -90,7 +90,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 pstmnt.executeUpdate();
             }
             conn.commit();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             if (conn != null) {
                 try {
                     conn.rollback();
@@ -121,7 +121,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 pstmt.executeUpdate();
             }
             conn.commit();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             if (conn != null) {
                 try {
                     conn.rollback();
@@ -155,7 +155,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setAge(result.getByte("age"));
                 users.add(user);
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return users;
@@ -171,7 +171,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 stmt.executeUpdate("TRUNCATE TABLE users");
             }
             conn.commit();
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             if (conn != null) {
                 try {
                     conn.rollback();
